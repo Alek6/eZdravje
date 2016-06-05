@@ -1,0 +1,57 @@
+/* bullet prioritete */
+.prioriteta {
+    margin-left:10px;
+    float: right;
+    background-color:red;
+    height:15px;
+    width:15px;
+    border-radius:50px;
+}
+/* barvani bullet */
+.prosta-zasedena-soba {
+    margin: 0 10px;
+    background-color:red;
+    height:15px;
+    width:15px;
+    border-radius:50px;
+}
+#cakalna-vrsta {
+    padding-left:0;
+    font-size:11px;
+}
+li:hover {
+    cursor: pointer;
+    box-shadow: black 0 0 3px;
+}
+.panel-body {
+    padding: 8px;
+}
+
+/* cas cakanja */
+.days {
+	float: left;
+	margin-right: 4px;
+}
+.hours {
+    float: left;
+}
+.minutes {
+	float: left;
+}
+.seconds {
+	float: left;
+}
+.clearDiv {
+	clear: both;
+}
+.timer {
+    float: right;
+    margin-right: 20%;
+    display: inline;  
+    font-size: 15pt;
+    color:grey;    
+}
+.ehr_id {
+    font-size: 13px;
+    color: grey;
+}
