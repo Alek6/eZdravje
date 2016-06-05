@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>eZdravje :: 4. DN :: OIS 2015/2016</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {padding-top: 70px;}
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+</head>
+<body>
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html">SPREJEM in ČAKALNA VRSTA</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html">Opis ideje</a></li>
+          <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Opis delovanja aplikacije -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Opis ideje, ki jo aplikacija podpira</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Opis ideje, ki jo aplikacija podpira -->
+            <p><strong>OSNOVNI SCENARIJ UPORABE:</strong> <i>Dodajanje novega pacienta pri prihodu v bolnico v čakalno vrsto. Navadno nov pacient na začetku dopolni list s svojimi osnovnimi podatki.</p>
+            <p>Po vnosu osnovnih podatkov pacient vnese vitalne znake zaradi katerih je prišel v bolnico.</p>
+            <p>Nato se pacient doda v čakalno vrsto z barvano oznako prioritete in časom čakanja.</p>
+            <p>Glede na čas, ki ga pacient v čakalni vrsti čakal, se spremeni barva prioritete, (visoka - rdeča), (srednja - oranžna) in (zelena - nizka).</p>
+            <p>Ko čas čakanja pacienta konča, se v oknu EHR zapis trenutnega pacienta prikažejo podatki pacienta.</p>
+            <p>Glede na vnešene sinptome se prikažejo statistični grafi (Graphs.js, D3.js , ... ).</p>
+            <p>Na koncu se prikažejo priporočene solucije zdravljenja pacienta in objave twitter.</p></i>
+            <p><strong>CILJNA PUBLIKA:</strong> <i>Ciljna publika aplikacije so vsi uporabniki.</p></i>
+            <p><strong>NAMEN APLIKACIJE:</strong> <i>Namen aplikacije je prikaz vitalnih znakov pacienta na vrsti v čakalni vrsti s pomočjo statističnih grafov in priporočitev solucij.</p></i>
+            <!-- KONEC: Opis ideje, ki jo aplikacija podpira -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Uporabljeni zunanji viri podatkov</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
+            <p>Zaradi slabega načrtovanja izvedljivega časa vsake faze te aplikacije in dodajanja idej, mi ni uspelo dodati zunanji vir od družabnega omrežja Twitter.</p>
+            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Master/detail načrtovalski vzorec</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Master/detail načrtovalski vzorec -->
+            <p>Zaradi slabega načrtovanja izvedljivega časa vsake faze te aplikacije in dodajanja idej, mi ni uspelo izvesti master/detail načrtovalski vzorec in tudi nepopolnega delovanja generiranja podatkov.</p>
+            <!-- KONEC: Master/detail načrtovalski vzorec -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Uporabljena tehnika za vizualizacijo podatkov</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
+            <p>Zaradi slabega načrtovanja izvedljivega časa vsake faze te aplikacije in dodajanja idej, mi ni uspelo dodati grafe, ki naj bi prikazali spremembo vitalnih znakov pacienta z uporabo grafov knjižnice D3.js</p>
+            <p>Vsekakor pri čakalni vrsti sem pacientu dodal "countdown timer", ki poteka ob vnosu novega pacienta v čakalno vrsto. Pri tem sem uporabil zunanjo knjižnico <a href="http://csouza.me/jQuery-Simple-Timer/">jQuery-Simple-Timer</a>.</p>
+            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- KONEC: Opis delovanja aplikacije -->
+
+</body>
+</html>

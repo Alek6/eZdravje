@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>eZdravje :: 4. DN :: OIS 2015/2016</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <link href="knjiznice/css/cakalnaVrsta.css" rel="stylesheet">
+  <style>
+    body {padding-top: 70px;}
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+	<script src="knjiznice/js/generiranje.js"></script>
+  <script src="knjiznice/Timer/jquery.js"></script>
+  <script src="knjiznice/Timer/jquery.simple.timer.js"></script>
+  <script>
+	$(function(){
+		$('.timer').startTimer({
+		onComplete: function(element){
+			element.addClass('is-complete');
+		}
+		});
+	})
+  </script>
+</head>
+<body style="background-color:black;">
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html">SPREJEM in ČAKALNA VRSTA</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html">Opis ideje</a></li>
+          <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
+          <li><a href="javascript:generiranje()">Generiranje podatkov</a></li>
+					<li><p id="izpisEHRID" style="color:white;"></p></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Vsebina aplikacije -->
+  <div class="container">
+    <div class="row" style="background-color:#333; padding-top:2%; margin-right:-7%; margin-left:-7%;">
+    	<div class="col-lg-4 col-md-4 col-sm-4">
+      		<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-lg-5 col-md-5 col-sm-5"><b>Kreiraj EHR zapis</b> novega pacienta</div>
+								<div class="col-lg-7 col-md-7 col-sm-7" style="float:right">
+									<select class="form-control input-sm" id="izberiPacienta"> 
+										<option value=""></option>
+										<option value="254f791d-2e7c-49d9-b646-376f62d6ead5">Dorbolò Cristian</option>
+										<option value="d564c6a3-5a43-4fcc-bfa7-9ac76e9673bd">Petricig Aleksej</option>
+										<option value="b931580f-2b05-488b-985b-8d9ffb08ad02">Capra Alma</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<span class="label label-default">Ime</span><input id="kreirajIme" type="text" class="form-control input-mini" placeholder="Osama">
+							<span class="label label-default">Priimek</span><input id="kreirajPriimek" type="text" class="form-control" placeholder="Bin Laden">
+							<span class="label label-default">Datum rojstva</span><input id="kreirajDatumRojstva" type="text" class="form-control" placeholder="1957-03-10T09:08">
+							<span class="label label-default">Starost</span><input id="kreirajStarost" type="text" class="form-control" placeholder="46">
+							<button type="button" class="btn btn-primary btn-xs" onclick="kreirajEHRZaPacienta()">Dodaj osnovne podatke o pacientu</button><span id="kreirajSporocilo"></span>
+						</div>
+					</div>
+      </div>
+		  
+			<div class="col-lg-5 col-md-5 col-sm-5">
+      		<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12" style="text-align:center;"><b>EHR zapis</b> trenutnega bolnika</div>
+							</div>
+						</div>
+						<div class="panel-body" style="height:475px;">
+							<div id="rezultatMeritveVitalnihZnakov"></div>
+			  		</div>
+					</div>
+      </div>  
+		
+		<div class="col-lg-3 col-md-3 col-sm-3" style="float:right;">
+      		<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12" style="text-align:center;"><b>ČAKALNA VRSTA</b> bolnikov</div>
+					</div>
+				</div>
+				<div class="panel-body" style="height:475px;overflow-y:scroll;">
+					<!-- seznam vseh pacientov v čakalni vrsti -->
+					<ul id="cakalna-vrsta" style="padding-left:0;font-size:13px;">
+						<li style="list-style:none;">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">ALEKSEJ PETRICIG <div class="prioriteta"></div></div>
+									</div>
+								</div>
+								<div class="panel-body">	
+									<table>
+										<tr> <th>Čas čakanja: <div class="timer" data-minutes-left="0.1"></div></th> </tr>
+										<tr> <th>EHR Id:</th> </tr>
+										<tr> <th class="ehr_id">d564c6a3-5a43-4fcc-bfa7-9ac76e9673bd</th> </tr>	  
+									</table>
+								</div>
+							</div>
+						</li>
+					</ul>
+			  	</div>
+			</div>
+      	</div>
+		
+		<div class="col-lg-4 col-md-4 col-sm-4" style="margin-top:-14.5%;">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-lg-5 col-md-5 col-sm-5"><b>Preberi EHR zapis</b> obstoječega pacienta</div>
+						<div class="col-lg-7 col-md-7 col-sm-7" style="float:right;">
+							<select class="form-control input-sm" id="preberiObstojeciEHR">
+								<option value=""></option>
+								<option value="254f791d-2e7c-49d9-b646-376f62d6ead5">Dorbolò Cristian</option>
+								<option value="d564c6a3-5a43-4fcc-bfa7-9ac76e9673bd">Petricig Aleksej</option>
+								<option value="b931580f-2b05-488b-985b-8d9ffb08ad02">Capra Alma</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<span class="label label-default">EHR ID</span><input id="preberiEHRid" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
+					<button type="button" class="btn btn-primary btn-xs" onclick="preberiEHROdPacienta()">Preberi osnovne podatke o pacientu</button><span id="preberiSporocilo"></span>  	
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<br><!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+	
+	<div class="row" style="background-color:#333; padding-top:2%; margin-right:-7%; margin-left:-7%;">
+    	<div class="col-lg-4 col-md-4 col-sm-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-5 col-md-5 col-sm-5"><b>Vnos vitalnih znakov</b> pacienta</div>
+							<div class="col-lg-7 col-md-7 col-sm-7" style="float:right">
+								<select class="form-control input-sm" id="preberiPredlogoPacienta">
+									<option value=""></option>
+									<option value="">Dorbolò Cristian</option>
+									<option value="">Petricig Aleksej</option>
+									<option value="">Capra Alma</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<span class="label label-default">EHR ID</span><input id="dodajVitalnoEHR" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
+						<span class="label label-default">Datum in ura</span><input id="dodajVitalnoDatumInUra" type="text" class="form-control input-mini" placeholder="2014-11-21T11:40Z">
+						<span class="label label-default">Telesna višina</span><div class="input-group"><input id="dodajVitalnoTelesnaVisina" type="text" class="form-control input-mini" placeholder="185"><span class="input-group-addon">cm</span></div>
+						<span class="label label-default">Telesna teža</span><div class="input-group"><input id="dodajVitalnoTelesnaTeza" type="text" class="form-control input-mini" placeholder="80.00"><span class="input-group-addon">kg</span></div>
+						<span class="label label-default">Telesna temperatura</span><div class="input-group"><input id="dodajVitalnoTelesnaTemperatura" type="text" class="form-control input-mini" placeholder="36.50"><span class="input-group-addon">°C</span></div>
+						<button type="button" class="btn btn-primary btn-xs" onclick="dodajMeritveVitalnihZnakov()">Dodaj meritve vitalnih znakov</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
+				  	</div>
+				</div>
+			</div>
+		  
+		<div class="col-lg-8 col-md-8 col-sm-8">
+      		<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12" style="text-align:center;"><b>STATISTIČNI GRAFI</b> vitalnih znakov</div>
+					</div>
+				</div>
+				<div class="panel-body" style="height:475px;">
+					<!-- XML zapis trenutnega pacienta -->
+			  </div>
+			</div>
+     </div> 
+    </div><!-- row  ----------------------------------------------------------------------------------------------- -->
+	
+	<br>
+	
+	<div class="row" style="background-color:#333; padding-top:2%; margin-right:-7%; margin-left:-7%;">
+    	<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-5 col-md-5 col-sm-5"><b>PREDLAGANA OZDRAVITEV</b> za bolnika</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						Morda vam lahko pomagajo spodnje objave:
+				  </div>
+				</div>
+			</div>
+    </div>
+  </div> <!-- container -->
+  <!-- KONEC: Vsebina aplikacije -->
+
+</body>
+</html>
